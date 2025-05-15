@@ -9,8 +9,8 @@ class ProfileCard extends StatelessWidget {
         child: Column(
           children: [
             CircleAvatar(
-                radius: 50,
-                backgroundImage: AssetImage("assets/profile.jpg"),
+              radius: 50,
+              backgroundImage: AssetImage("assets/profile.jpg"),
             ),
             SizedBox(height: 10),
             Text(
