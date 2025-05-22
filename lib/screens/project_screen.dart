@@ -1,35 +1,43 @@
 import 'package:flutter/material.dart';
 import '../models/project.dart';
+import '../data/project_data.dart';
 import '../widgets/project_item.dart';
 
-final List<Project> projects = [
-  Project(
-    title: "Portfolio Website",
-    description: "Website pribadi untuk menampilkan portofolio",
-    imageUrl: "assets/portfolio.jpg",
-  ),
-  Project(
-    title: "To-Do List App",
-    description: "Aplikasi Flutter untuk mengelola tugas harian",
-    imageUrl: "assets/todo.png",
-  ),
-];
-
 class ProjectScreen extends StatelessWidget {
-  const ProjectScreen({super.key});
+  const ProjectScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text("My Projects"),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.black.withOpacity(0.4),
+        elevation: 0,
+        title: const Text(
+          'My Projects',
+          style: TextStyle(color: Colors.greenAccent),
+        ),
+        centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.greenAccent),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          children: projects.map((p) => ProjectItem(project: p)).toList(),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.black, Colors.greenAccent],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: ListView.builder(
+          padding: const EdgeInsets.all(16),
+          itemCount: projects.length,
+          itemBuilder: (context, index) {
+            final project = projects[index];
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: ProjectItem(project: project),
+            );
+          },
         ),
       ),
     );
